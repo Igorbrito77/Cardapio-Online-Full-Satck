@@ -16,8 +16,8 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 descrição aqui ....................................
 
-<img src="/public/front-end/prints_readme/tela1.png">
-<img src="/public/front-end/prints_readme/tela2.png">
-<img src="/public/front-end/prints_readme/tela3.png">
-<img src="/public/front-end/prints_readme/tela4.png">
-<img src="/public/front-end/prints_readme/tela5.png">
+<img src="/front-end/public/prints_readme/tela1.png">
+<img src="/front-end/public/prints_readme/tela2.png">
+<img src="/front-end/public/prints_readme/tela3.png">
+<img src="/front-end/public/prints_readme/tela4.png">
+<img src="/front-end/public/prints_readme/tela5.png">
