@@ -1,0 +1,84 @@
+.cabecalho{
+    width: 100%;
+    /* max-width: 1180px; */
+    height: 200px;
+    padding: 0 30px;
+    /* margin: 32px auto; */
+    /* border-radius: 4px; */
+    border: 1px solid #dcdce6;
+    background-color: rgb(126, 167, 126);
+    /* background-color: rgb(184, 199, 184); */
+
+    display: block;
+    /* align-items: center; */
+    /* justify-content: space-between; */
+}
+
+.cabecalho header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    position: relative;
+}
+
+.cabecalho header img#logo{
+    height: 300px;
+    display: block;
+    margin: 0 auto;
+}
+
+
+.usuario-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.botao-usuario {
+  background-color: green;
+  border: none;
+    border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  color: #333;
+}
+
+.botao-usuario:hover {
+  background-color: #30b186;
+  border-radius: 5px;
+}
+
+.icone-usuario {
+  font-size: 20px;
+}
+
+.menu-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-radius: 5px;
+  margin-top: 4px;
+  z-index: 1000;
+  min-width: 120px;
+}
+
+.opcao-dropdown {
+  padding: 10px 16px;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #333;
+}
+
+.opcao-dropdown:hover {
+  background-color: #f8f8f8;
+}
