@@ -12,13 +12,13 @@ services:
       - '5440:5432'
     volumes:
         # After the entrypoint calls initdb to create the default postgres user and database, it will run any *.sql files, run any executable *.sh scripts, and source any non-executable *.sh scripts found in that directory to do further initialization before starting the service.
-        - ./NestJS_PostgreSQL/sql/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+        - ./api/sql/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
         # copy the sql script to fill tables
-        - ./NestJS_PostgreSQL/sql/fill_tables.sql:/docker-entrypoint-initdb.d/fill_tables.sql
+        - ./api/sql/fill_tables.sql:/docker-entrypoint-initdb.d/fill_tables.sql
 
   api:
     build:
-      context: ./NestJS_PostgreSQL
+      context: ./api
       dockerfile: Dockerfile
     container_name: api-cardapio-dev
     ports:
@@ -32,27 +32,21 @@ services:
     depends_on:
       - db
     volumes:
-      - ./NestJS_PostgreSQL:/app
+      - ./api:/app
       - /app/node_modules
       # - ./dist:/app/dist
 
   manager:
     build: 
-      context: ./Cardapio-Diario-ReactJS 
+      context: ./front-end 
       dockerfile: Dockerfile
     container_name: manager-cardapio-dev
     ports:
       - "3000:3000"
-    # environment:
-    #   DB_HOST: db
-    #   DB_PORT: 5440
-    #   DB_USER: meuusuario
-    #   DB_PASSWORD: minhasecreta
-    #   DB_NAME: banco_projeto_nest 
     depends_on:
       - api
     volumes:
-      - ./Cardapio-Diario-ReactJS:/app
+      - ./front-end:/app
       - /app/node_modules
       # - ./dist:/app/dist
 
