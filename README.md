@@ -4,6 +4,9 @@
 
 Este é um projeto **Full Stack** desenvolvido para gerenciar pedidos de refeições em ambientes como **lanchonetes**, **refeitórios empresariais**, **escolares** ou **universitários**. A aplicação permite que usuários logados montem seus pratos personalizados, selecionem acompanhamentos e realizem seus pedidos de forma prática e intuitiva por meio de uma **interface web moderna**.
 
+<img src="/front-end/public/prints_readme/tela1.png">
+<img src="/front-end/public/prints_readme/tela3.png">
+
 ---
 
 ### 💻 Front-end
@@ -48,20 +51,16 @@ Todo o projeto foi containerizado com **Docker**, incluindo um arquivo `docker-c
 - Builda e executa o front-end React  
 - Faz a conexão entre os serviços automaticamente
 
+## Passos para executar o projeto:
+
 Com isso, a instalação é extremamente simples:
 
 ```bash
 docker compose up
+```
 
+Em seguida, basta acessar a aplicação no endereço http://localhost:3000
 
-<img src="/front-end/public/prints_readme/tela1.png">
 <img src="/front-end/public/prints_readme/tela2.png">
-<img src="/front-end/public/prints_readme/tela3.png">
 <img src="/front-end/public/prints_readme/tela5.png">
 
-
-## Passos para executar o projeto:
-
-Executar o comando `docker compose up` no terminal na pasta do projeto para o Docker instalar todo o necessário
-
-Acessar a aplicação no endereço http://localhost:3000
