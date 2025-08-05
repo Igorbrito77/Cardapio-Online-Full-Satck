@@ -4,8 +4,6 @@ import {Link, useHistory} from 'react-router-dom';
 
 import api from '../../services/api';
 
-import logoImg from '../../assets/icon.png';
-
 import './styles.css'
 import Cabecalho from '../Cabecalho';
 import { FaArrowLeft } from 'react-icons/fa';
@@ -160,6 +158,11 @@ function PaginaInicial(){
     function exibir_modal_confirmacao(){
         
         const todos_itens = proteinasApi.concat(acompanhamentosApi).concat(bebidasApi).concat(sobremesasApi);
+
+        if(itensSelecionadosIds.length === 0) {
+            alert('Nenhum item selecionado. Por favor, selecione pelo menos um item.');
+            return;
+        }
 
         let itens_selecionados_nomes_aux = todos_itens.map( item => {
 
