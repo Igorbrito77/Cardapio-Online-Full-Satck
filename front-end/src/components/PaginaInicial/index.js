@@ -46,16 +46,27 @@ function PaginaInicial(){
     }, []);
 
 
-    let proteina_anterior_id = null, bebida_anterior_id = null, sobremesa_anterior_id = null;
+    let  bebida_anterior_id = null, sobremesa_anterior_id = null;
 
     const [itens_selecionados_nomes, set_itens_selecionados_nomes] = useState(null);
 
 
     const [proteinaSelecionada, setProteinaSelecionada] = useState(null);
 
+    const [proteina_anterior_id, setProteinaAnteriorId] = useState(null);
+
+
     function handleProteina(id){
 
-        proteina_anterior_id = proteinaSelecionada;
+        if(id === proteinaSelecionada) {
+            console.log("foi aqui");
+            setProteinaSelecionada(null);
+            setProteinaAnteriorId(null);
+            return; // Se a proteína já está selecionada, desmarca
+        }
+
+        console.log("do lado de fora");
+        setProteinaAnteriorId(proteinaSelecionada)
         setProteinaSelecionada(id);
     }
 
@@ -94,10 +105,24 @@ function PaginaInicial(){
 
         if(tipo == 'proteina'){
                 
-            let array_aux = itensSelecionadosIds.filter(item => item !== proteina_anterior_id);
+            console.log("itensSelecionadosIds antes ===> ", itensSelecionadosIds);
+
+            if(id === proteinaSelecionada) {
+                setItensSelecionadosIds(itensSelecionadosIds.filter(item => item !== id));
+                return; // Se a proteína já está selecionada, desmarca
+            }
+
+            console.log("proteina_anterior_id ===> ", proteina_anterior_id);
+
+            let array_aux = itensSelecionadosIds.filter(item => item !== proteina_anterior_id && item !== id);
             array_aux.push(id);
 
-            setItensSelecionadosIds(array_aux);            
+
+
+            setItensSelecionadosIds(array_aux);       
+            
+                        console.log("itensSelecionadosIds depois ===> ", array_aux);
+
         }
 
         else if (tipo == 'acompanhamento'){
@@ -157,6 +182,8 @@ function PaginaInicial(){
 
     function exibir_modal_confirmacao(){
         
+        console.log("itensSelecionadosIds ===> ", itensSelecionadosIds);
+
         const todos_itens = proteinasApi.concat(acompanhamentosApi).concat(bebidasApi).concat(sobremesasApi);
 
         if(itensSelecionadosIds.length === 0) {
