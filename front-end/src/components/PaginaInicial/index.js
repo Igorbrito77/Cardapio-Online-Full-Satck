@@ -53,20 +53,19 @@ function PaginaInicial(){
 
     const [proteinaSelecionada, setProteinaSelecionada] = useState(null);
 
-    const [proteina_anterior_id, setProteinaAnteriorId] = useState(null);
-
+    let proteina_anterior_id = 99999;
 
     function handleProteina(id){
 
         if(id === proteinaSelecionada) {
             console.log("foi aqui");
+            proteina_anterior_id = id;
             setProteinaSelecionada(null);
-            setProteinaAnteriorId(null);
             return; // Se a proteína já está selecionada, desmarca
         }
 
         console.log("do lado de fora");
-        setProteinaAnteriorId(proteinaSelecionada)
+        proteina_anterior_id = proteinaSelecionada;
         setProteinaSelecionada(id);
     }
 
@@ -104,24 +103,25 @@ function PaginaInicial(){
     function handleItensSelecionadosIds(id, tipo){
 
         if(tipo == 'proteina'){
-                
-            console.log("itensSelecionadosIds antes ===> ", itensSelecionadosIds);
 
-            if(id === proteinaSelecionada) {
+
+            console.log("proteina_anterior_id ---> ", proteina_anterior_id );
+
+            if(id === proteina_anterior_id) {
                 setItensSelecionadosIds(itensSelecionadosIds.filter(item => item !== id));
                 return; // Se a proteína já está selecionada, desmarca
             }
 
-            console.log("proteina_anterior_id ===> ", proteina_anterior_id);
+            // console.log("proteina_anterior_id ===> ", proteina_anterior_id);
 
-            let array_aux = itensSelecionadosIds.filter(item => item !== proteina_anterior_id && item !== id);
+            let array_aux = itensSelecionadosIds.filter(item => item !== proteina_anterior_id);
             array_aux.push(id);
 
 
 
             setItensSelecionadosIds(array_aux);       
             
-                        console.log("itensSelecionadosIds depois ===> ", array_aux);
+             console.log("itensSelecionadosIds depois ===> ", array_aux);
 
         }
 
