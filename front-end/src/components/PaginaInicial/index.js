@@ -4,8 +4,6 @@ import {Link, useHistory} from 'react-router-dom';
 
 import api from '../../services/api';
 
-import logoImg from '../../assets/icon.png';
-
 import './styles.css'
 import Cabecalho from '../Cabecalho';
 import { FaArrowLeft } from 'react-icons/fa';
@@ -47,16 +45,24 @@ function PaginaInicial(){
 
     }, []);
 
-
-    let proteina_anterior_id = null, bebida_anterior_id = null, sobremesa_anterior_id = null;
+    
+    let proteina_anterior_id = 99999, bebida_anterior_id = null, sobremesa_anterior_id = null;
 
     const [itens_selecionados_nomes, set_itens_selecionados_nomes] = useState(null);
 
-
     const [proteinaSelecionada, setProteinaSelecionada] = useState(null);
+
 
     function handleProteina(id){
 
+        if(id === proteinaSelecionada) {
+            console.log("foi aqui");
+            proteina_anterior_id = id;
+            setProteinaSelecionada(null);
+            return; // Se a proteína já está selecionada, desmarca
+        }
+
+        console.log("do lado de fora");
         proteina_anterior_id = proteinaSelecionada;
         setProteinaSelecionada(id);
     }
@@ -75,6 +81,12 @@ function PaginaInicial(){
     const [bebidaSelecionada, setBebidaSelecionada] = useState(null);
 
     function handleBebida(id){
+        
+        if(id === bebidaSelecionada) {
+            bebida_anterior_id = id;
+            setBebidaSelecionada(null);
+            return; // Se a bebida já está selecionada, desmarca
+        }
 
         bebida_anterior_id = bebidaSelecionada;
         setBebidaSelecionada(id);
@@ -83,6 +95,12 @@ function PaginaInicial(){
     const [sobremesaSelecionada, setSobremesaSelecionada] = useState(null);
 
     function handleSobremesa(id){
+
+        if(id === sobremesaSelecionada) {
+            sobremesa_anterior_id = id;
+            setSobremesaSelecionada(null);
+            return; // Se a sobremesa já está selecionada, desmarca
+        }
 
         sobremesa_anterior_id = sobremesaSelecionada;
         setSobremesaSelecionada(id);
@@ -95,11 +113,26 @@ function PaginaInicial(){
     function handleItensSelecionadosIds(id, tipo){
 
         if(tipo == 'proteina'){
-                
+
+
+            console.log("proteina_anterior_id ---> ", proteina_anterior_id );
+
+            if(id === proteina_anterior_id) {
+                setItensSelecionadosIds(itensSelecionadosIds.filter(item => item !== id));
+                return; // Se a proteína já está selecionada, desmarca
+            }
+
+            // console.log("proteina_anterior_id ===> ", proteina_anterior_id);
+
             let array_aux = itensSelecionadosIds.filter(item => item !== proteina_anterior_id);
             array_aux.push(id);
 
-            setItensSelecionadosIds(array_aux);            
+
+
+            setItensSelecionadosIds(array_aux);       
+            
+             console.log("itensSelecionadosIds depois ===> ", array_aux);
+
         }
 
         else if (tipo == 'acompanhamento'){
@@ -113,6 +146,11 @@ function PaginaInicial(){
 
 
         else if (tipo == 'bebida'){
+
+            if(id === bebida_anterior_id) {
+                setItensSelecionadosIds(itensSelecionadosIds.filter(item => item !== id));
+                return; // Se a bebida já está selecionada, desmarca
+            }
                 
             let array_aux = itensSelecionadosIds.filter(item => item !== bebida_anterior_id);
             array_aux.push(id);
@@ -120,10 +158,16 @@ function PaginaInicial(){
             setItensSelecionadosIds(array_aux);            
         }
 
+
         else if (tipo == 'sobremesa'){
+
+             if(id === sobremesa_anterior_id) {
+                setItensSelecionadosIds(itensSelecionadosIds.filter(item => item !== id));
+                return; // Se a sobremesa já está selecionada, desmarca
+            }
                 
             let array_aux = itensSelecionadosIds.filter(item => item !== sobremesa_anterior_id);
-            array_aux.push(id);
+            array_aux.push(id); 
 
             setItensSelecionadosIds(array_aux);            
         }
@@ -159,7 +203,14 @@ function PaginaInicial(){
 
     function exibir_modal_confirmacao(){
         
+        console.log("itensSelecionadosIds ===> ", itensSelecionadosIds);
+
         const todos_itens = proteinasApi.concat(acompanhamentosApi).concat(bebidasApi).concat(sobremesasApi);
+
+        if(itensSelecionadosIds.length === 0) {
+            alert('Nenhum item selecionado. Por favor, selecione pelo menos um item.');
+            return;
+        }
 
         let itens_selecionados_nomes_aux = todos_itens.map( item => {
 
