@@ -45,15 +45,13 @@ function PaginaInicial(){
 
     }, []);
 
-
-    let  bebida_anterior_id = null, sobremesa_anterior_id = null;
+    
+    let proteina_anterior_id = 99999, bebida_anterior_id = null, sobremesa_anterior_id = null;
 
     const [itens_selecionados_nomes, set_itens_selecionados_nomes] = useState(null);
 
-
     const [proteinaSelecionada, setProteinaSelecionada] = useState(null);
 
-    let proteina_anterior_id = 99999;
 
     function handleProteina(id){
 
@@ -83,6 +81,12 @@ function PaginaInicial(){
     const [bebidaSelecionada, setBebidaSelecionada] = useState(null);
 
     function handleBebida(id){
+        
+        if(id === bebidaSelecionada) {
+            bebida_anterior_id = id;
+            setBebidaSelecionada(null);
+            return; // Se a bebida já está selecionada, desmarca
+        }
 
         bebida_anterior_id = bebidaSelecionada;
         setBebidaSelecionada(id);
@@ -91,6 +95,12 @@ function PaginaInicial(){
     const [sobremesaSelecionada, setSobremesaSelecionada] = useState(null);
 
     function handleSobremesa(id){
+
+        if(id === sobremesaSelecionada) {
+            sobremesa_anterior_id = id;
+            setSobremesaSelecionada(null);
+            return; // Se a sobremesa já está selecionada, desmarca
+        }
 
         sobremesa_anterior_id = sobremesaSelecionada;
         setSobremesaSelecionada(id);
@@ -136,6 +146,11 @@ function PaginaInicial(){
 
 
         else if (tipo == 'bebida'){
+
+            if(id === bebida_anterior_id) {
+                setItensSelecionadosIds(itensSelecionadosIds.filter(item => item !== id));
+                return; // Se a bebida já está selecionada, desmarca
+            }
                 
             let array_aux = itensSelecionadosIds.filter(item => item !== bebida_anterior_id);
             array_aux.push(id);
@@ -143,10 +158,16 @@ function PaginaInicial(){
             setItensSelecionadosIds(array_aux);            
         }
 
+
         else if (tipo == 'sobremesa'){
+
+             if(id === sobremesa_anterior_id) {
+                setItensSelecionadosIds(itensSelecionadosIds.filter(item => item !== id));
+                return; // Se a sobremesa já está selecionada, desmarca
+            }
                 
             let array_aux = itensSelecionadosIds.filter(item => item !== sobremesa_anterior_id);
-            array_aux.push(id);
+            array_aux.push(id); 
 
             setItensSelecionadosIds(array_aux);            
         }
