@@ -2,7 +2,9 @@
 
 ## 🧾 Descrição do Projeto
 
-Este é um projeto **Full Stack** desenvolvido para gerenciar pedidos de refeições em ambientes como **lanchonetes**, **refeitórios empresariais**, **escolares** ou **universitários**. A aplicação permite que usuários logados montem seus pratos personalizados, selecionem acompanhamentos e realizem seus pedidos de forma prática e intuitiva por meio de uma **interface web moderna**.
+Este é um projeto **Full Stack** desenvolvido para gerenciar pedidos de refeições em ambientes como **lanchonetes**, **refeitórios empresariais**, **escolares** ou **universitários**. A aplicação permite que usuários logados montem seus pratos personalizados, selecionem acompanhamentos e realizem seus pedidos de forma prática e intuitiva por meio de uma **interface web**.
+
+Atualmente, é uma aplicação pequena, desenvolvida apenas para integrar front-end, back-end e banco de dados. No futuro, o sistema poderá receber novas funcionalidades e recursos mais complexos.
 
 <img src="/front-end/public/prints_readme/tela1.png">
 <img src="/front-end/public/prints_readme/tela6.png">
@@ -13,7 +15,7 @@ Este é um projeto **Full Stack** desenvolvido para gerenciar pedidos de refeiç
 
 ### 💻 Front-end
 
-O front-end foi desenvolvido com **ReactJS**, proporcionando uma experiência fluida e responsiva ao usuário. A interface permite:
+O front-end foi desenvolvido com **ReactJS**. A interface permite:
 
 - Autenticação de usuários  
 - Montagem do prato com seleção de itens  
@@ -24,11 +26,10 @@ O front-end foi desenvolvido com **ReactJS**, proporcionando uma experiência fl
 
 ### 🧠 Back-end
 
-A API foi construída com **NodeJS** e **NestJS**, utilizando uma arquitetura modular e escalável. Ela é responsável por:
+A API foi construída com **NodeJS** e **NestJS**. Ela é responsável por:
 
 - Autenticar usuários  
 - Gerenciar os dados dos pedidos, pratos e categorias  
-- Controlar os direitos de acesso  
 - Realizar consultas e persistência no banco de dados
 
 ---
@@ -38,8 +39,8 @@ A API foi construída com **NodeJS** e **NestJS**, utilizando uma arquitetura mo
 Os dados são armazenados em um banco **PostgreSQL**, estruturado com entidades como:
 
 - Usuários  
-- Itens do cardápio  
-- Pedidos  
+- Pedidos
+- Alimentos
 - Categorias de alimentos
 
 ---
