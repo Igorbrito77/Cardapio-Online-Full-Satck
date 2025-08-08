@@ -16,7 +16,7 @@ export class UsersController {
     }
 
     @Post()
-    @ApiOperation({ summary: 'Cadastrar novo usuário (brabamente)' })
+    @ApiOperation({ summary: 'Cadastrar novo usuário' })
     @ApiBody({ type: CreateUserDto, required: false })
     @ApiResponse({ status: 200, description: 'Usuário cadastrado com sucesso.' })
     async create(@Body() createUserDto: CreateUserDto) {
