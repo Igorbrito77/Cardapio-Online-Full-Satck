@@ -24,10 +24,6 @@ export class PedidoController {
         }
     }
 
-    // @Get()
-    // @ApiOperation({ summary: 'Listar todos os usuários' })
-    // @ApiResponse({ status: 200, description: 'Lista de usuários retornada com sucesso.' })
-    
     @Get(':user_id')
     @ApiOperation({ summary: 'Listar pedidos de um usuário' })
     @ApiResponse({ status: 200, description: 'Lista de pedidos do usuário retornada com sucesso.' })
